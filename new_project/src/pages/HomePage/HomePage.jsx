@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Form from "../../components/Form/Form";
-import InputDate from "../../components/InputDate/InputDate";
+import { InputDate } from "mh_date_picker";
 import "./HomePage.scss";
 
 const onClick = (date) => {

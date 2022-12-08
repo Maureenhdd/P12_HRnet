@@ -35,6 +35,15 @@ const Form = () => {
     employees.push(employee);
     localStorage.setItem("employees", JSON.stringify(employees));
     setShowModal(true);
+    setFirstName("");
+    setLastName("");
+    setBirthDate("");
+    setStartDate("");
+    setDepartment("");
+    setStreet("");
+    setCity("");
+    setState("");
+    setZipCode("");
   };
 
   const onClick = () => {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Form/Form.scss";
 import { getStates } from "./utils";
+import Modal from "../Modal/Modal";
 
 const Form = () => {
   const states = getStates();
@@ -14,6 +15,7 @@ const Form = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,6 +34,11 @@ const Form = () => {
     };
     employees.push(employee);
     localStorage.setItem("employees", JSON.stringify(employees));
+    setShowModal(true);
+  };
+
+  const onClick = () => {
+    setShowModal(false);
   };
 
   return (
@@ -154,7 +161,16 @@ const Form = () => {
         </button>
       </form>
 
-      <div className="modal">EMPLOYEES CREATED !! </div>
+      {showModal ? (
+        <Modal
+          title={"Yay !🎊"}
+          description={"Your employee is created ! "}
+          titleBtn={"Close"}
+          onClick={onClick}
+        />
+      ) : (
+        <></>
+      )}
     </section>
   );
 };

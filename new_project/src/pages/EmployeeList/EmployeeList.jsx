@@ -1,7 +1,8 @@
 import * as React from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Navbar from "../../components/Navbar/Navbar";
-const SPACED_DATE_FORMAT = "DD MMM YYYY";
+import { Link } from "react-router-dom";
+import Table from "../../components/Table/Table";
+import "../EmployeeList/EmployeeList.scss";
 
 const columns = [
   // { field: "First", headerName: "ID", width: 70 },
@@ -49,39 +50,19 @@ const columns = [
 ];
 const EmployeeList = () => {
   const localData = JSON.parse(localStorage.getItem("employees"));
-  const randomNumber = (max) => Math.floor(Math.random() * max);
   return (
     <>
       <Navbar />
-      <div
-        style={{
-          height: 600,
-          width: "70%",
-          backgroundColor: "white",
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: 30,
-          padding: 30,
-        }}
-      >
-        <DataGrid
-          rows={localData}
-          columns={columns}
-          pageSize={10}
-          getRowId={(localData) => localData.firstName + randomNumber(200)}
-          rowsPerPageOptions={[10, 50, 100]}
-          disableColumnFilter
-          disableColumnSelector
-          disableDensitySelector
-          disableExportSelector
-          components={{ Toolbar: GridToolbar }}
-          componentsProps={{
-            toolbar: {
-              showQuickFilter: true,
-              // quickFilterProps: { debounceMs: 500 },
-            },
-          }}
-        />
+
+      <div className="table_block">
+        {localData === null ? (
+          <>
+            <h1>Il n'y a aucun employé inscrit</h1>
+            <Link to="/">Ajouter des Employés</Link>
+          </>
+        ) : (
+          <Table localData={localData} columns={columns} />
+        )}
       </div>
     </>
   );

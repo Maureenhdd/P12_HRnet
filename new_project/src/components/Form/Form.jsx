@@ -11,20 +11,18 @@ const Form = () => {
   const [lastName, setLastName] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [department, setDepartment] = useState("");
+  const [department, setDepartment] = useState("Sales");
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
-  const [state, setState] = useState("");
+  const [state, setState] = useState(states[0].abbreviation);
   const [zipCode, setZipCode] = useState("");
   const [showModal, setShowModal] = useState(false);
   const handleChangeBirthDate = (e) => {
     setBirthDate(e);
-    console.log(e);
   };
 
   const handleChangeDateStart = (e) => {
     setStartDate(e);
-    console.log(e);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -141,7 +139,7 @@ const Form = () => {
               className="form_input"
               id="street"
               type="text"
-              value={street || ""}
+              value={street}
               onChange={(e) => setStreet(e.target.value)}
             />
 
@@ -163,7 +161,7 @@ const Form = () => {
               name="state"
               id="state"
               className="form_input"
-              value={state || ""}
+              value={state}
               onChange={(e) => setState(e.target.value)}
             >
               {states.map((state, i) => (
